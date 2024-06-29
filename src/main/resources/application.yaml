@@ -18,5 +18,7 @@ mybatis-plus:
 
 # 日志格式
 logging:
+  level:
+    org.springframework.security: debug
   pattern:
     console: '%d{HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'

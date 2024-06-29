@@ -49,11 +49,11 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="role:${roles}">
-                                    <td th:if="${role.adminHas}">
+                                    <td th:if="${role.hasRole}">
                                         <input name="ids" type="checkbox" th:value="${role.rid}"
                                                class="icheckbox_square-blue" checked>
                                     </td>
-                                    <td th:if="${!role.adminHas}">
+                                    <td th:if="${!role.hasRole}">
                                         <input name="ids" type="checkbox" th:value="${role.rid}"
                                                class="icheckbox_square-blue">
                                     </td>

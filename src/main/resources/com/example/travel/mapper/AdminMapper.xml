@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.travel.mapper.AdminMapper">
+    <resultMap id="adminMap" type="com.example.travel.pojo.Admin">
+        <id column="aid" property="aid"></id>
+        <result column="username" property="username"></result>
+        <collection property="roleList" column="aid" ofType="com.example.travel.pojo.Role">
+            <result column="roleName" property="roleName"></result>
+            <result column="roleDesc" property="roleDesc"></result>
+            <collection column="rid" property="permissionList" ofType="com.example.travel.pojo.Permission">
+                <result column="permissionName" property="permissionName"></result>
+                <result column="permissionDesc" property="permissionDesc"></result>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="findDesc" parameterType="int" resultMap="adminMap" >
+
+        select *
+        from admin
+                 left join travel.admin_role ar on admin.aid = ar.aid
+                 left join travel.role r on ar.rid = r.rid
+                 left join travel.role_permission rp on r.rid = rp.rid
+                 left join travel.permission p on rp.pid = p.pid
+        where admin.aid=#{id}
+    </select>
+
+    <delete id="deleteAdminAllRole" parameterType="int">
+        delete from travel.admin_role where aid=#{aid}
+    </delete>
+
+    <insert id="addAdminRole" parameterType="int">
+        insert into travel.admin_role(aid,rid) values (#{aid},#{rid})
+    </insert>
+
+    <select id="findPermissionByUsername" parameterType="string" resultType="com.example.travel.pojo.Permission">
+        select distinct permission.* from admin
+                left join travel.admin_role ar on admin.aid = ar.aid
+                left join travel.role r on ar.rid = r.rid
+                left join travel.role_permission rp on r.rid = rp.rid
+                left join travel.permission permission on rp.pid = permission.pid
+        where admin.username=#{username}
+        and permission.pid is not null
+    </select>
+</mapper>

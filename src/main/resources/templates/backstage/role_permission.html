@@ -49,11 +49,11 @@
                                 </thead>
                                 <tbody>
                                 <input type="hidden" name="rid" th:value="${rid}">
-                                <tr th:each="permission : ${permissions}">
-                                    <td th:if="${permission.roleHas}">
+                                <tr th:each="permission : ${permissionWithStatusList}">
+                                    <td th:if="${permission.hasPermission}">
                                         <input name="ids" type="checkbox" th:value="${permission.pid}" class="icheckbox_square-blue" checked>
                                     </td>
-                                    <td th:if="${!permission.roleHas}">
+                                    <td th:if="${!permission.hasPermission}">
                                         <input name="ids" type="checkbox" th:value="${permission.pid}" class="icheckbox_square-blue">
                                     </td>
                                     <td th:text="${permission.permissionName }"></td>

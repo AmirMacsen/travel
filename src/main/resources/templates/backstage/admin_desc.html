@@ -36,12 +36,12 @@
                 <tr>
                     <td th:text="${admin.username}"></td>
                 </tr>
-                <tbody th:each="role,status:${admin.roles}">
+                <tbody th:each="role,status:${admin.roleList}">
                     <tr th:attr="data-tt-id=${status.index}">
                         <td th:text="${role.roleName}"></td>
                         <td th:text="${role.roleDesc}"></td>
                     </tr>
-                    <tr th:each="permission:${role.permissions}" th:attr="data-tt-parent-id=${status.index}" data-tt-id="1-1">
+                    <tr th:each="permission:${role.permissionList}" th:attr="data-tt-parent-id=${status.index}" data-tt-id="1-1">
                         <td th:text="${permission.permissionName}"></td>
                         <td th:text="${permission.permissionDesc}"></td>
                     </tr>

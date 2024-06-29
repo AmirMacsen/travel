@@ -14,7 +14,7 @@ public class Admin {
     private String password;
     private String email;
     private String phoneNum;
-    private String status;
+    private boolean status;
     @TableField(exist = false)
     private List<Role> roleList;
 }
