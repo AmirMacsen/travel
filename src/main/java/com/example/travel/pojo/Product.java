@@ -16,7 +16,7 @@ public class Product {
     private Boolean status; // 状态 0 开启 1 关闭
     private String productDesc; // 产品描述
     private String pImage; // 产品图片
-    private Integer categoryId; // 产品分类id
+    private Integer cid; // 产品分类id
     @TableField(exist = false) // 表明不是数据库的实体属性，而是映射的
     private Category category; // 产品分类
 }

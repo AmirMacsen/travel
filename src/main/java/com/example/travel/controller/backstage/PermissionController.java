@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.travel.pojo.Permission;
 import com.example.travel.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,7 @@ public class PermissionController {
     @PreAuthorize("hasAuthority('/permission/all')")
     public ModelAndView all(@RequestParam(value = "page", defaultValue = "1") int page,
                       @RequestParam(value = "size", defaultValue = "10") int size) {
-        Page<Permission> selectPage = permissionService.findPage(1, 10);
+        Page<Permission> selectPage = permissionService.findPage(page, size);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("permissionPage", selectPage);
         modelAndView.setViewName("backstage/permission_all");

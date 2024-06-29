@@ -48,6 +48,8 @@ public class SecurityConfig {
                                 || request.getRequestURI().startsWith("/backstage/js")
                                 || request.getRequestURI().startsWith("/backstage/img")
                                 || request.getRequestURI().startsWith("/backstage/plugins")
+                                || request.getRequestURI().startsWith("/upload")
+                                || request.getRequestURI().startsWith("/frontdesk")
                         ).permitAll()
                         .requestMatchers("/backstage/**").authenticated()
                 )

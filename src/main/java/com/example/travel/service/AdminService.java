@@ -47,6 +47,11 @@ public class AdminService {
     }
 
     public int update(Admin admin){
+        // 处理密码问题
+        String oldPassword = adminMapper.selectById(admin.getAid()).getPassword();
+        if (!oldPassword.equals(admin.getPassword())){
+            admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+        }
         return adminMapper.updateById(admin);
     }
 

@@ -44,7 +44,7 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("admin", admin);
         modelAndView.setViewName("backstage/admin_edit");
-        return modelAndView;
+         return modelAndView;
     }
 
     // 修改管理员
